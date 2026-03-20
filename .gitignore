@@ -1,0 +1,5 @@
+secrets.h
+.esphome/
+.DS_Store
+**/.rcs/
+**/.claude/
