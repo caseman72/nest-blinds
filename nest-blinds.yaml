@@ -1,5 +1,5 @@
 substitutions:
-  pulse_duration: "1s"
+  pulse_duration: "1.5s"
 
   # Secrets - override via upload.sh
   wifi_ssid: "PLACEHOLDER"
@@ -83,7 +83,7 @@ logger:
   level: INFO
 
 # AUNMAS Dual Channel Relay Module (ESP32-WROOM-32E)
-# Status LED: GPIO 23, Relays: GPIO 16 (left), GPIO 17 (right)
+# Status LED: GPIO 23, Relay Down: GPIO 17 (right), Relay Up: GPIO 16 (left)
 # Hidden inside Nest Protect case, powered by Nest 5V battery system
 # Relays simulate button presses on a blind remote (soldered leads)
 
@@ -95,13 +95,13 @@ output:
 # Relays are internal - controlled by buttons
 switch:
   - platform: gpio
-    pin: 16
+    pin: 17
     id: relay_down
     internal: true
     restore_mode: ALWAYS_OFF
 
   - platform: gpio
-    pin: 17
+    pin: 16
     id: relay_up
     internal: true
     restore_mode: ALWAYS_OFF
