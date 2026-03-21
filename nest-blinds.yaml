@@ -106,13 +106,23 @@ switch:
     internal: true
     restore_mode: ALWAYS_OFF
 
-# HA buttons - momentary pulse to simulate remote button press
-button:
+# Cover entity - shows up as blinds with up/down in HA
+cover:
   - platform: template
-    name: "Blinds Down"
-    id: btn_blinds_down
-    icon: "mdi:blinds"
-    on_press:
+    name: "Blinds"
+    id: blinds
+    device_class: blind
+    optimistic: true
+    assumed_state: true
+    has_position: false
+    open_action:
+      - logger.log: "Blinds Up pressed"
+      - output.turn_on: led_output
+      - switch.turn_on: relay_up
+      - delay: ${pulse_duration}
+      - switch.turn_off: relay_up
+      - output.turn_off: led_output
+    close_action:
       - logger.log: "Blinds Down pressed"
       - output.turn_on: led_output
       - switch.turn_on: relay_down
@@ -120,18 +130,7 @@ button:
       - switch.turn_off: relay_down
       - output.turn_off: led_output
 
-  - platform: template
-    name: "Blinds Up"
-    id: btn_blinds_up
-    icon: "mdi:blinds-open"
-    on_press:
-      - logger.log: "Blinds Up pressed"
-      - output.turn_on: led_output
-      - switch.turn_on: relay_up
-      - delay: ${pulse_duration}
-      - switch.turn_off: relay_up
-      - output.turn_off: led_output
-
+button:
   - platform: template
     name: "Restart"
     id: btn_restart
