@@ -6,8 +6,7 @@
 #define WIFI_SSID "your_ssid"
 #define WIFI_PASSWORD "your_password"
 
-// MQTT broker (HiveMQ Cloud)
-#define MQTT_BROKER "your_broker.hivemq.cloud"
+#define MQTT_BROKER "your_broker"
 #define MQTT_USERNAME "your_username"
 #define MQTT_PASSWORD "your_password"
 

@@ -3,3 +3,5 @@ secrets.h
 .DS_Store
 **/.rcs/
 **/.claude/
+
+*.bak.*
